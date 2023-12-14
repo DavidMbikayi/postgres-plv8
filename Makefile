@@ -11,18 +11,19 @@ localbuild: deps build clean
 
 # Dependencies for the project such as Docker Node Alpine image
 deps: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO
-	$(info: version $(DOCKERFILE))
+	$(info Pull latest version of $(POSTGRES_BASE_IMAGE))
+	$(info dockerfile $(DOCKERFILE))
 	podman pull $(POSTGRES_BASE_IMAGE)
 
 
 build: deps
-	podman  build \
+	docker  build \
 		--build-arg PG_CONTAINER_VERSION=$(PG_CONTAINER_VERSION) \
 		--file  $(DOCKERFILE)  \
 		-t $(TAG) .
 
 
-buildAndPush: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO, env-PG_CONTAINER_VERSION
+buildAndPush: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO
 	@echo "$(DOCKER_ACCESS_TOKEN)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
 	docker  build \
     		--build-arg PG_CONTAINER_VERSION=$(PG_CONTAINER_VERSION) \
