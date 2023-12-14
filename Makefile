@@ -42,10 +42,10 @@ pull:
 	docker pull $(POSTGRES_BASE_IMAGE)
 
 shell:
-	docker run --rm -it -v $(ROOT_DIR):/opt/app $(TAG) bash
+	docker run --rm -it  $(TAG) bash
 
 clean:
-	docker rmi -f $(IMAGE_SERVERLESS_TAG) $(IMAGE_NODE_TAG) $(IMAGE_BOTH_TAG)
+	docker rmi -f $(TAG)
 
 env-%:
 	$(info Check if $* is not empty)
