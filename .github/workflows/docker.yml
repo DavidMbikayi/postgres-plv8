@@ -26,12 +26,6 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
-      - name: list files
-        id: list
-        run: ls -la
-      - name: set up permissions
-        id: permissions
-        run: chmod +X build.sh
       - name: Build and push
         id: docker_build_alpine
         env:
