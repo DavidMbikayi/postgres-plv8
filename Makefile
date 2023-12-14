@@ -10,7 +10,7 @@ deploy: deps buildAndPush clean
 localbuild: deps build clean
 
 # Dependencies for the project such as Docker Node Alpine image
-deps:
+deps: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO
 	$(info: version $(DOCKERFILE))
 	podman pull $(POSTGRES_BASE_IMAGE)
 
