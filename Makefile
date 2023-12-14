@@ -1,7 +1,7 @@
 
 PG_CONTAINER_VERSION ?= 16.1
 BASE_IMAGE_DISTRO ?=bookworm
-DOCKERFILE=$(BASE_IMAGE_DISTRO)\Dockerfile
+DOCKERFILE=$(BASE_IMAGE_DISTRO)/Dockerfile
 POSTGRES_BASE_IMAGE=postgres:$(PG_CONTAINER_VERSION)-$(BASE_IMAGE_DISTRO)
 TAG=postgres-plv8:$(PG_CONTAINER_VERSION)-$(BASE_IMAGE_DISTRO)
 
@@ -13,7 +13,7 @@ localbuild: deps build clean
 deps: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO
 	$(info Pull latest version of $(POSTGRES_BASE_IMAGE))
 	$(info dockerfile $(DOCKERFILE))
-	podman pull $(POSTGRES_BASE_IMAGE)
+	docker pull $(POSTGRES_BASE_IMAGE)
 
 
 build: deps
