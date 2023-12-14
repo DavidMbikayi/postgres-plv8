@@ -30,6 +30,6 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          BASE_IMAGE_DISTRO: ${{ matrix.PG_VARS.Version }}
-          PG_CONTAINER_VERSION: ${{matrix.PG_VARS.Version.BASE_DISTRO}}
+          BASE_IMAGE_DISTRO:  ${{ matrix.PG_VARS.BASE_DISTRO }}
+          PG_CONTAINER_VERSION: ${{ matrix.PG_VARS.Version }}
         run: make --directory=${{ github.workspace }}/  deploy
