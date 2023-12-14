@@ -1,4 +1,4 @@
-ARG PG_CONTAINER_VERSION=16.1
+ARG PG_CONTAINER_VERSION=14.5
 FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-bullseye as builder
 
 ARG DEBIAN_FRONTEND=noninteractive

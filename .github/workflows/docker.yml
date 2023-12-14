@@ -13,8 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [ 16.1, 15.5 ]
-        base_distro: [ bullseye, alpine, bookworm ]
+        PG_VARS: [ { Version: 16.1, BASE_DISTRO: alpine }, { Version: 15.5, BASE_DISTRO: bookworm } ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,8 +30,6 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          DOCKERFILE: ${{ github.workspace }}/alpine.Dockerfile
-          NODE_VERSION: ${{ matrix.node-version }}
-          BASE_IMAGE_DISTRO: ${{ matrix.base_distro }}
-        if: ${{ matrix.base_distro == 'alpine' }}
+          BASE_IMAGE_DISTRO: ${{ matrix.PG_VARS.Version }}
+          PG_CONTAINER_VERSION: ${{matrix.PG_VARS.Version.BASE_DISTRO}}
         run: make --directory=${{ github.workspace }}/  deploy

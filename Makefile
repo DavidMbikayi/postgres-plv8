@@ -22,7 +22,7 @@ build: deps
 		-t $(TAG) .
 
 
-buildAndPush: env-SERVERLESS_VERSION env-DOCKER_USERNAME env-DOCKER_ACCESS_TOKEN env-DOCKERFILE
+buildAndPush: env-PG_CONTAINER_VERSION env-BASE_IMAGE_DISTRO, env-PG_CONTAINER_VERSION
 	@echo "$(DOCKER_ACCESS_TOKEN)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
 	docker  build \
     		--build-arg PG_CONTAINER_VERSION=$(PG_CONTAINER_VERSION) \

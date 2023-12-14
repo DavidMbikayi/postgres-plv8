@@ -1,5 +1,5 @@
-ARG PG_CONTAINER_VERSION=15
-FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-alpine as builder
+ARG PG_CONTAINER_VERSION=16.1
+FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-3.19alpine as builder
 
 RUN set -ex \
   && apk --no-cache add git python3 build-base linux-headers clang15 llvm15 llvm16 cmake make pkgconfig postgresql-dev
