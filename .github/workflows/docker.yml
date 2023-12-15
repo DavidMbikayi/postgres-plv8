@@ -8,6 +8,7 @@ on:
       - 'Makefile'
       - 'Dockerfile'
       - '.github/workflows/docker.yml'
+      - '*/Dockerfile'
 
 jobs:
   build:
