@@ -1,5 +1,5 @@
 ARG PG_CONTAINER_VERSION=16.1
-FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-3.19alpine as builder
+FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-alpine3.19 as builder
 
 RUN set -ex \
   && apk --no-cache add git python3 build-base linux-headers clang15 llvm15 llvm16 cmake make pkgconfig postgresql-dev
@@ -15,7 +15,7 @@ RUN set -ex \
   && make install
 
 
-FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-alpine
+FROM docker.io/library/postgres:${PG_CONTAINER_VERSION}-alpine3.19
 
 ARG PLV8_VERSION=3.2.0alpha
 ENV PLV8_VERSION=${PLV8_VERSION}
